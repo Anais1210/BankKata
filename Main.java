@@ -21,6 +21,10 @@ public class Main extends Application {
         boolean endOfSession = false;
         String userInput;
 
+        int balance;
+        int threshold;
+        String name;
+
         // Loop
         while (!endOfSession) {
 
@@ -41,7 +45,33 @@ public class Main extends Application {
                     endOfSession = true;
                     b.closeDb();
                     break;
-                // TODO
+                case "0":
+                    b.printAllAccounts();
+                    break;
+                case "1":
+                    System.out.println("\nEnter a name for the account :");
+                    name = s.nextLine();
+                    System.out.println("\nEnter the balance of the account : ");
+                    balance = s.nextInt();
+                    System.out.println("\nEnter the threshold of the account : ");
+                    threshold = s.nextInt();
+                    b.createNewAccount(name,balance,threshold);
+                    flushScreen();
+                    break;
+                case "2":
+                    System.out.println("\nEnter the name of the account that you want to modify : ");
+                    name = s.nextLine();
+                    System.out.println("\nEnter the new balance : ");
+                    balance = s.nextInt();
+                    b.changeBalanceByName(name,balance);
+                    flushScreen();
+                    break;
+                case "3":
+                    System.out.println("\nEnter the name of the account you want to lock : ");
+                    name = s.nextLine();
+                    b.blockAccount(name);
+                    flushScreen();
+                    break;
             }
         }
 
